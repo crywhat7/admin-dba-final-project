@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./selector-tablas.component.scss'],
 })
 export class SelectorTablasComponent {
-  sidebarVisible = true;
+  sidebarVisible = false;
 }
