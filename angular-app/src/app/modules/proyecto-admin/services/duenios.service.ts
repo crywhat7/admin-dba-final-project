@@ -25,4 +25,19 @@ export class DueniosService {
       })
     );
   }
+
+  eliminarDuenio(codDuenio: number) {
+    type Response = { msg: string; data: boolean };
+    return this.http
+      .delete<Response>(`${WEB_SERVICE}api/duenios/${codDuenio}`)
+      .pipe(
+        map((res: Response) => {
+          return res.data;
+        }),
+        catchError(err => {
+          this.alerta.showError('Error al eliminar el duenio');
+          throw err;
+        })
+      );
+  }
 }

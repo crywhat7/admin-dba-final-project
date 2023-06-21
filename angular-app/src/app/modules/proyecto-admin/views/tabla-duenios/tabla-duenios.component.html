@@ -1,0 +1,53 @@
+<main class="main-view">
+  <app-selector-tablas></app-selector-tablas>
+
+  <section class="tabla">
+    <h1>Tabla de Dueños</h1>
+    <p-table [value]="duenios" styleClass="p-datatable-striped">
+      <ng-template pTemplate="caption">
+        <div class="acciones">
+          <button pButton (click)="showModalCrearDuenio()">
+            <i class="fa-solid fa-plus" style="margin-right: 1rem"></i>
+            Agregar Dueño
+          </button>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nombre</th>
+          <th>Identidad</th>
+          <th>Direccion</th>
+          <th>Eliminar</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-duenio>
+        <tr>
+          <td>{{ duenio.nombreCompleto }}</td>
+          <td>{{ duenio.identidad }}</td>
+          <td
+            style="
+              white-space: nowrap;
+              max-width: 15rem;
+              text-overflow: ellipsis;
+            ">
+            {{ duenio.direccion }}
+          </td>
+          <td style="text-align: center">
+            <button
+              pButton
+              icon="pi pi-trash"
+              (click)="eliminarDuenio(duenio.codDuenio)"
+              class="p-button-rounded p-button-danger"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="7" style="text-align: center">
+            No hay pacientes registrados
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </section>
+</main>

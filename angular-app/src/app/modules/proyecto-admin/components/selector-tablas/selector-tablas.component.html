@@ -2,13 +2,13 @@
   <div class="menus">
     <h3>Tablas</h3>
     <section class="opciones">
-      <a routerLink="pacientes" class="opcion">
+      <a routerLink="/tablas/pacientes" class="opcion">
         <i class="fa-solid fa-paw"></i>Pacientes
       </a>
-      <a routerLink="/empleados" class="opcion"
+      <a routerLink="/tablas/empleados" class="opcion"
         ><i class="fa-solid fa-user-doctor"></i>Empleados</a
       >
-      <a routerLink="/dueños" class="opcion"
+      <a routerLink="/tablas/duenios" class="opcion"
         ><i class="fa-solid fa-user"></i>Dueños</a
       >
       <a routerLink="/a" class="opcion">a...</a>
@@ -27,3 +27,5 @@
     (click)="sidebarVisible = true"
     icon="pi pi-arrow-right"></button>
 </article>
+
+<router-outlet></router-outlet>
