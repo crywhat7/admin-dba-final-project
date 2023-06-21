@@ -1,0 +1,62 @@
+#API
+
+api
+node-ts-api/node_modules
+node-ts-api/dist
+node-ts-api/.env
+node-ts-api/package-lock.json
+
+
+# compiled output
+angular-app/dist
+angular-app/build
+angular-app/tmp
+angular-app/out-tsc
+angular-app/package-lock.json
+
+# dependencies
+angular-app//node_modules
+
+# profiling files
+chrome-profiler-events.json
+speed-measure-plugin.json
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+angular-app/.angular
+angular-app/.angular/cache
+angular-app/.sass-cache
+angular-app/sassdoc
+angular-app/connect.lock
+angular-app/coverage
+angular-app/libpeerconnection.log
+angular-app/npm-debug.log
+angular-app/yarn-error.log
+angular-app/pnpm-lock.yaml
+angular-app/settings.json
+angular-app/testem.log
+angular-app/typings
+
+# System Files
+angular-app/.DS_Store
+angular-app/Thumbs.db
+
+# Compiled files
+# theme.css
+# layout.css
+# src/assets/layout/styles/theme/designer
