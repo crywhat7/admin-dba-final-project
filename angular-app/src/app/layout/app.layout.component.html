@@ -1,19 +1,18 @@
 <div class="layout-container" [ngClass]="containerClass">
+  <!-- TODO: MENU DERECHO PARA FUTURO -->
+  <!-- <app-rightmenu></app-rightmenu> -->
+  <app-sidebar></app-sidebar>
 
-    <!-- TODO: MENU DERECHO PARA FUTURO -->
-    <!-- <app-rightmenu></app-rightmenu> -->
-    <app-sidebar></app-sidebar>
-    
-    <div class="layout-content-wrapper">
+  <div class="layout-content-wrapper">
+    <app-breadcrumb></app-breadcrumb>
 
-        <app-breadcrumb></app-breadcrumb>
-
-        <div class="layout-content col-12">
-            <router-outlet></router-outlet>
-        </div>
-
+    <div class="layout-content col-12">
+      <router-outlet></router-outlet>
     </div>
-    <!-- <app-config></app-config> -->
-    
-    <div *ngIf="layoutService.state.staticMenuMobileActive" class="layout-mask"></div>
+  </div>
+  <!-- <app-config></app-config> -->
+
+  <div
+    *ngIf="layoutService.state.staticMenuMobileActive"
+    class="layout-mask"></div>
 </div>

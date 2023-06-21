@@ -1,0 +1,29 @@
+<p-sidebar [(visible)]="sidebarVisible">
+  <div class="menus">
+    <h3>Tablas</h3>
+    <section class="opciones">
+      <a routerLink="pacientes" class="opcion">
+        <i class="fa-solid fa-paw"></i>Pacientes
+      </a>
+      <a routerLink="/empleados" class="opcion"
+        ><i class="fa-solid fa-user-doctor"></i>Empleados</a
+      >
+      <a routerLink="/dueños" class="opcion"
+        ><i class="fa-solid fa-user"></i>Dueños</a
+      >
+      <a routerLink="/a" class="opcion">a...</a>
+      <a routerLink="/enfermedades" class="opcion"
+        ><i class="fa-solid fa-viruses"></i>Enfermedades</a
+      >
+      <a routerLink="/cirugías" class="opcion"
+        ><i class="fa-solid fa-syringe"></i>Cirugías</a
+      >
+    </section>
+  </div>
+</p-sidebar>
+<article class="btn-abrir-menu">
+  <button
+    pButton
+    (click)="sidebarVisible = true"
+    icon="pi pi-arrow-right"></button>
+</article>

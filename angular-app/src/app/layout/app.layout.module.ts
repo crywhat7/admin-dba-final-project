@@ -18,7 +18,6 @@ import { AppTopbarComponent } from './app.topbar.component';
 import { AppRightMenuComponent } from './app.rightmenu.component';
 import { AppMenuComponent } from './app.menu.component';
 import { AppMenuitemComponent } from './app.menuitem.component';
-import { RouterModule } from '@angular/router';
 import { AppSidebarComponent } from './app.sidebar.component';
 import { AppFooterComponent } from './app.footer.component';
 import { MegaMenuModule } from 'primeng/megamenu';
@@ -27,13 +26,7 @@ import { MenuModule } from 'primeng/menu';
 import { StyleClassModule } from 'primeng/styleclass';
 
 import { PrimeNgModule } from '../modules/prime-ng/prime-ng.module';
-import { NgProgressModule } from 'ngx-progressbar';
-import { StoreModule } from '@ngrx/store';
 import { AppHomeComponent } from './app.home.component';
-import {
-  NOMBRE_LAYOUT_STATE,
-  ROOT_REDUCERS_LAYOUT,
-} from '../redux/layout/state/layout.state';
 
 @NgModule({
   declarations: [
@@ -62,13 +55,10 @@ import {
     TooltipModule,
     MegaMenuModule,
     RippleModule,
-    RouterModule,
     ButtonModule,
     MenuModule,
     AppConfigModule,
     PrimeNgModule,
-    NgProgressModule,
-    StoreModule.forFeature(NOMBRE_LAYOUT_STATE, ROOT_REDUCERS_LAYOUT),
   ],
 })
 export class AppLayoutModule {}

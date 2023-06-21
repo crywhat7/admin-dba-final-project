@@ -1,0 +1,30 @@
+.btn-abrir-menu {
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  button {
+    width: 1.5rem;
+    height: 6rem;
+  }
+}
+
+.opciones {
+  display: flex;
+  flex-direction: column;
+  .opcion {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transition: all 0.5s ease-in;
+    padding: 1rem;
+    box-sizing: border-box;
+    gap: 1rem;
+    text-decoration: none;
+    color: rgb(44, 44, 44);
+    &:hover {
+      background-color: #e6e6e6;
+      transition: all 0.1s ease-out;
+    }
+  }
+}

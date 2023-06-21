@@ -6,10 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { filter, Subscription } from 'rxjs';
-import { ID_MENU } from '../config/config';
-import { obtenerMenu } from '../redux/layout/actions/menu.action';
 import { MenuService } from './app.menu.service';
 import { AppSidebarComponent } from './app.sidebar.component';
 import { AppTopbarComponent } from './app.topbar.component';
@@ -48,14 +45,8 @@ export class AppLayoutComponent implements OnDestroy {
     public layoutService: LayoutService,
     public renderer: Renderer2,
     public router: Router,
-    private cd: ChangeDetectorRef,
-    private store: Store<LayoutState>
+    private cd: ChangeDetectorRef
   ) {
-    const idMenu = Number(sessionStorage.getItem(ID_MENU));
-    if (idMenu) {
-      this.store.dispatch(obtenerMenu({ idMenu }));
-    }
-
     this.hideMenuProfile();
 
     this.overlayMenuOpenSubscription =
