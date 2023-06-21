@@ -3,5 +3,107 @@
 
   <section class="tabla">
     <h1>Tabla de Pacientes</h1>
+    <p-table [value]="pacientes" styleClass="p-datatable-striped">
+      <ng-template pTemplate="caption">
+        <div class="acciones">
+          <button pButton (click)="showModalCrearPaciente()">
+            <i class="fa-solid fa-plus" style="margin-right: 1rem"></i>
+            Agregar Paciente
+          </button>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nombre</th>
+          <th>Imagen</th>
+          <th>Raza</th>
+          <th>Especie</th>
+          <th>Medico</th>
+          <th>Fecha Ingreso</th>
+          <th>Eliminar</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-paciente>
+        <tr>
+          <td>{{ paciente.nombrePaciente }}</td>
+          <td>
+            <img
+              loading="lazy"
+              src="{{ paciente.fotoPaciente }}"
+              style="width: 50px; height: 50px"
+              onerror="this.error = null; this.src='assets/images/no-pictures.png'" />
+          </td>
+          <td>{{ paciente.codRaza ?? 'SIN RAZA' }}</td>
+          <td>{{ paciente.codEspecie ?? 'SIN ESPECIE' }}</td>
+          <td>{{ paciente.codMedico ?? 'SIN MEDICO' }}</td>
+          <td>{{ paciente.fechaIngreso | date : 'dd/MM/YYYY' }}</td>
+          <td style="text-align: center">
+            <button
+              pButton
+              icon="pi pi-trash"
+              (click)="eliminarPaciente(paciente.codPaciente)"
+              class="p-button-rounded p-button-danger"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="7" style="text-align: center">
+            No hay pacientes registrados
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
   </section>
 </main>
+
+<p-dialog [(visible)]="dialogVisible" [modal]="true" header="Agregar paciente">
+  <main
+    class="dialogo"
+    style="margin: 1rem; display: flex; flex-direction: column; gap: 1rem">
+    <span class="p-float-label">
+      <input
+        pInputText
+        [(ngModel)]="paciente.nombrePaciente"
+        id="nombrePaciente"
+        type="text"
+        required />
+      <label for="nombrePaciente">Nombre</label>
+    </span>
+    <span class="p-float-label">
+      <p-dropdown
+        [options]="familias"
+        [(ngModel)]="familiaSeleccionada"
+        placeholder="Seleccione familia"
+        appendTo="body"
+        optionLabel="nombre"
+        (ngModelChange)="getEspecies()"
+        id="especie"
+        [showClear]="false"></p-dropdown>
+      <label for="especie">Familia</label>
+    </span>
+    <span class="p-float-label">
+      <p-dropdown
+        [options]="especies"
+        [(ngModel)]="especieSeleccionada"
+        placeholder="Seleccione especie"
+        appendTo="body"
+        optionLabel="nombre"
+        id="especie"
+        (ngModelChange)="getRazas()"
+        [showClear]="false"></p-dropdown>
+      <label for="especie">Especie</label>
+    </span>
+    <span class="p-float-label">
+      <p-dropdown
+        [options]="razas"
+        [(ngModel)]="razaSeleccionada"
+        placeholder="Seleccione raza"
+        appendTo="body"
+        optionLabel="nombreRaza"
+        id="especie"
+        [showClear]="false"></p-dropdown>
+      <label for="especie">Raza</label>
+    </span>
+  </main>
+</p-dialog>
