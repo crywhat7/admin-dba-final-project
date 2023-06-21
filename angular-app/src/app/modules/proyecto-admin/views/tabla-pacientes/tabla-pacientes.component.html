@@ -35,7 +35,7 @@
           </td>
           <td>{{ paciente.codRaza ?? 'SIN RAZA' }}</td>
           <td>{{ paciente.codEspecie ?? 'SIN ESPECIE' }}</td>
-          <td>{{ paciente.codMedico ?? 'SIN MEDICO' }}</td>
+          <td>{{ paciente.codMedicoCabecera ?? 'SIN MEDICO' }}</td>
           <td>{{ paciente.fechaIngreso | date : 'dd/MM/YYYY' }}</td>
           <td style="text-align: center">
             <button
@@ -65,6 +65,7 @@
       <input
         pInputText
         [(ngModel)]="paciente.nombrePaciente"
+        class="{{ !paciente.nombrePaciente ? 'ng-invalid ng-dirty' : '' }}"
         id="nombrePaciente"
         type="text"
         required />
@@ -77,6 +78,7 @@
         placeholder="Seleccione familia"
         appendTo="body"
         optionLabel="nombre"
+        class="{{ !familiaSeleccionada ? 'ng-invalid ng-dirty' : '' }}"
         (ngModelChange)="getEspecies()"
         id="especie"
         [showClear]="false"></p-dropdown>
@@ -89,6 +91,7 @@
         placeholder="Seleccione especie"
         appendTo="body"
         optionLabel="nombre"
+        class="{{ !especieSeleccionada ? 'ng-invalid ng-dirty' : '' }}"
         id="especie"
         (ngModelChange)="getRazas()"
         [showClear]="false"></p-dropdown>
@@ -101,9 +104,50 @@
         placeholder="Seleccione raza"
         appendTo="body"
         optionLabel="nombreRaza"
+        class="{{ !razaSeleccionada ? 'ng-invalid ng-dirty' : '' }}"
         id="especie"
         [showClear]="false"></p-dropdown>
       <label for="especie">Raza</label>
+    </span>
+    <span class="p-float-label">
+      <p-dropdown
+        [options]="duenios"
+        [(ngModel)]="duenioSeleccionado"
+        placeholder="Seleccione dueño"
+        appendTo="body"
+        optionLabel="nombreCompleto"
+        class="{{ !duenioSeleccionado ? 'ng-invalid ng-dirty' : '' }}"
+        id="especie"
+        [showClear]="false"></p-dropdown>
+      <label for="especie">Dueño</label>
+    </span>
+    <span class="p-float-label">
+      <p-dropdown
+        [options]="medicos"
+        [(ngModel)]="medicoSeleccionado"
+        placeholder="Seleccione medico"
+        appendTo="body"
+        optionLabel="nombre"
+        class="{{ !medicoSeleccionado ? 'ng-invalid ng-dirty' : '' }}"
+        id="especie"
+        [showClear]="false"></p-dropdown>
+      <label for="especie">Medico</label>
+    </span>
+
+    <span class="btn-guardar">
+      <button
+        pButton
+        [disabled]="
+          !paciente.nombrePaciente ||
+          !familiaSeleccionada ||
+          !especieSeleccionada ||
+          !razaSeleccionada ||
+          !duenioSeleccionado ||
+          !medicoSeleccionado
+        "
+        (click)="agregarPaciente()">
+        AGREGAR
+      </button>
     </span>
   </main>
 </p-dialog>

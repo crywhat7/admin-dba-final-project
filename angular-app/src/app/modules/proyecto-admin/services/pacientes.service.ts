@@ -47,4 +47,20 @@ export class PacientesService {
         })
       );
   }
+
+  crearPaciente(paciente: Paciente) {
+    type Response = { msg: string; data: boolean };
+    return this.http
+      .post<Response>(`${WEB_SERVICE}api/pacientes`, paciente)
+      .pipe(
+        map((res: Response) => {
+          return res.data;
+        }),
+        catchError(err => {
+          this.alerta.showError('Error al crear el paciente');
+          of(null);
+          throw err;
+        })
+      );
+  }
 }

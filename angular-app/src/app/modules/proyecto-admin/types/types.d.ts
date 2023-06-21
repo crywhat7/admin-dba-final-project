@@ -11,7 +11,7 @@ export interface Paciente {
   codRaza: number;
   codDuenio: number;
   codMedicoCabecera: number;
-  fotoPaciente: number;
+  fotoPaciente: string | null;
   fechaIngreso: Date;
 }
 
@@ -26,4 +26,17 @@ export interface Raza {
   nombreRaza: string;
   codEspecie: number;
   longevidadEstimada: number;
+}
+
+export interface Duenio {
+  codDuenio: number;
+  nombreCompleto: string;
+  identidad: string;
+  direccion: string;
+}
+
+export interface Medico {
+  codMedico: number;
+  nombre: string;
+  fechaNacimiento: Date;
 }

@@ -35,3 +35,16 @@ export interface Raza {
   codEspecie: number;
   longevidadEstimada: number;
 }
+
+export interface Duenio {
+  codDuenio: number;
+  nombreCompleto: string;
+  identidad: string;
+  direccion: string;
+}
+
+export interface Medico {
+  codMedico: number;
+  nombre: string;
+  fechaNacimiento: Date;
+}

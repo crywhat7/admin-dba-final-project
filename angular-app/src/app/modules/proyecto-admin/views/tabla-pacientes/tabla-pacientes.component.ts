@@ -1,7 +1,17 @@
 import { Component } from '@angular/core';
 import { MiscServiceService } from '../../services/misc-service.service';
-import { Especie, Familia, Paciente, Raza } from '../../types/types';
+import {
+  Duenio,
+  Especie,
+  Familia,
+  Medico,
+  Paciente,
+  Raza,
+} from '../../types/types';
 import { PacientesService } from '../../services/pacientes.service';
+import { DueniosService } from '../../services/duenios.service';
+import { MedicosService } from '../../services/medicos.service';
+import { AlertaService } from 'src/app/services/alertas/alerta.service';
 
 @Component({
   selector: 'app-tabla-pacientes',
@@ -18,28 +28,32 @@ export class TablaPacientesComponent {
     codRaza: 0,
     codDuenio: 0,
     codMedicoCabecera: 0,
-    fotoPaciente: 0,
+    fotoPaciente: null,
     fechaIngreso: new Date(),
   };
   especieSeleccionada: Especie | null = null;
   familiaSeleccionada: Familia | null = null;
   razaSeleccionada: Raza | null = null;
-  duenioSeleccionado: any = null;
-  medicoSeleccionado: any = null;
+  duenioSeleccionado: Duenio | null = null;
+  medicoSeleccionado: Medico | null = null;
 
   especies: Especie[] = [];
   familias: Familia[] = [];
   razas: Raza[] = [];
-  duenios: any[] = [];
-  medicos: any[] = [];
+  duenios: Duenio[] = [];
+  medicos: Medico[] = [];
 
   constructor(
     private miscService: MiscServiceService,
-    private pacientesService: PacientesService
+    private pacientesService: PacientesService,
+    private medicosService: MedicosService,
+    private dueniosService: DueniosService,
+    private alerta: AlertaService
   ) {
     this.getFamilias();
-    this.getEspecies();
     this.getPacientes();
+    this.getDuenios();
+    this.getMedicos();
   }
 
   getFamilias() {
@@ -78,6 +92,18 @@ export class TablaPacientesComponent {
     });
   }
 
+  getDuenios() {
+    this.dueniosService.getDuenios().subscribe(duenios => {
+      this.duenios = duenios;
+    });
+  }
+
+  getMedicos() {
+    this.medicosService.getMedicos().subscribe(medicos => {
+      this.medicos = medicos;
+    });
+  }
+
   eliminarPaciente(codPaciente: number) {
     this.pacientesService.eliminarPaciente(codPaciente).subscribe(ok => {
       if (ok) {
@@ -96,8 +122,27 @@ export class TablaPacientesComponent {
       codRaza: 0,
       codDuenio: 0,
       codMedicoCabecera: 0,
-      fotoPaciente: 0,
+      fotoPaciente: null,
       fechaIngreso: new Date(),
     };
+  }
+
+  agregarPaciente() {
+    this.paciente.codEspecie = this.especieSeleccionada?.codigoEspecie || 0;
+    this.paciente.codRaza = this.razaSeleccionada?.codRaza || 0;
+    this.paciente.codDuenio = this.duenioSeleccionado?.codDuenio || 0;
+    this.paciente.codMedicoCabecera = this.medicoSeleccionado?.codMedico || 0;
+    this.paciente.nombrePaciente = this.paciente.nombrePaciente
+      .trim()
+      .toUpperCase();
+
+    this.pacientesService.crearPaciente(this.paciente).subscribe(ok => {
+      if (ok) {
+        this.getPacientes();
+        this.dialogVisible = false;
+        this.alerta.showSuccess('Paciente creado correctamente');
+        return;
+      }
+    });
   }
 }

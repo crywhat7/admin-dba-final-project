@@ -90,6 +90,8 @@ export class Database {
 
       const isOk = (result.rowsAffected ?? 0) > 0;
 
+      await connection.commit();
+
       return isOk || true;
     } catch (err) {
       console.error(err);

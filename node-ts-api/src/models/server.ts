@@ -1,7 +1,10 @@
 import cors from "cors";
 import express from "express";
 import { router as pacientesRouter } from "../routes/pacientes.routes";
+import { router as dueniosRouter } from "../routes/duenios.routes";
+import { router as medicosRouter } from "../routes/medicos.routes";
 import { router as miscRouter } from "../routes/misc.routes";
+
 import { ServerConfig } from "../app";
 import * as morgan from "morgan";
 
@@ -25,6 +28,8 @@ export class Server {
 
   private routes = (): void => {
     this.app.use(this.config.pacientesPath, pacientesRouter);
+    this.app.use(this.config.dueniosPath, dueniosRouter);
+    this.app.use(this.config.medicosPath, medicosRouter);
     this.app.use(this.config.miscPath, miscRouter);
   };
 
