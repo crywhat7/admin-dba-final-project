@@ -40,4 +40,18 @@ export class DueniosService {
         })
       );
   }
+  crearDuenio(duenio: Duenio) {
+    duenio.nombreCompleto = duenio.nombreCompleto.toUpperCase();
+    duenio.direccion = duenio.direccion.toUpperCase();
+    type Response = { msg: string; data: boolean };
+    return this.http.post<Response>(`${WEB_SERVICE}api/duenios`, duenio).pipe(
+      map((res: Response) => {
+        return res.data;
+      }),
+      catchError(err => {
+        this.alerta.showError('Error al crear el duenio');
+        throw err;
+      })
+    );
+  }
 }

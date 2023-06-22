@@ -1,0 +1,13 @@
+:host ::ng-deep .dialogo {
+  .p-dropdown,
+  button,
+  input,
+  textarea {
+    width: 100%;
+  }
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

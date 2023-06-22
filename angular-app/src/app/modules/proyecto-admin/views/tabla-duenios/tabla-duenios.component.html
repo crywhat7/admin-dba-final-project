@@ -51,3 +51,52 @@
     </p-table>
   </section>
 </main>
+
+<p-dialog [(visible)]="modalCrearDuenio" [modal]="true" header="Agregar dueño">
+  <main
+    class="dialogo"
+    style="margin: 1rem; display: flex; flex-direction: column; gap: 1rem">
+    <span class="p-float-label">
+      <input
+        pInputText
+        [(ngModel)]="duenio.nombreCompleto"
+        class="{{ !duenio.nombreCompleto ? 'ng-invalid ng-dirty' : '' }}"
+        id="nombreDuenio"
+        type="text"
+        required />
+      <label for="nombreDuenio">Nombre</label>
+    </span>
+    <span class="p-float-label">
+      <textarea
+        pInputTextarea
+        [(ngModel)]="duenio.direccion"
+        class="{{ !duenio.direccion ? 'ng-invalid ng-dirty' : '' }}"
+        id="nombreDuenio"
+        type="text"
+        required>
+      </textarea>
+      <label for="nombreDuenio">Dirección</label>
+    </span>
+    <span class="p-float-label">
+      <input
+        pInputText
+        [(ngModel)]="duenio.identidad"
+        class="{{ !duenio.identidad ? 'ng-invalid ng-dirty' : '' }}"
+        id="nombreDuenio"
+        type="text"
+        required />
+      <label for="nombreDuenio">Identidad</label>
+    </span>
+
+    <span class="btn-guardar">
+      <button
+        pButton
+        [disabled]="
+          !duenio.nombreCompleto || !duenio.identidad || !duenio.direccion
+        "
+        (click)="agregarDuenio()">
+        AGREGAR
+      </button>
+    </span>
+  </main>
+</p-dialog>

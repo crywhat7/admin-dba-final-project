@@ -6,6 +6,8 @@ const routerOptions: ExtraOptions = {
 import { ProyectoAdminComponent } from './proyecto-admin.component';
 import { TablaPacientesComponent } from './views/tabla-pacientes/tabla-pacientes.component';
 import { TablaDueniosComponent } from './views/tabla-duenios/tabla-duenios.component';
+import { TablaMedicosComponent } from './views/tabla-medicos/tabla-medicos.component';
+import { TablaGeneralComponent } from './views/tabla-general/tabla-general.component';
 
 const routes: Routes = [
   {
@@ -19,6 +21,14 @@ const routes: Routes = [
   {
     path: 'duenios',
     component: TablaDueniosComponent,
+  },
+  {
+    path: 'empleados',
+    component: TablaMedicosComponent,
+  },
+  {
+    path: 'general',
+    component: TablaGeneralComponent,
   },
 ];
 

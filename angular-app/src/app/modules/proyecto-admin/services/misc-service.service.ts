@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
-import { Especie, Familia, Raza } from '../types/types';
+import { Especie, Familia, GeneralInfo, Raza } from '../types/types';
 import { WEB_SERVICE } from 'src/app/config/config';
 import { AlertaService } from 'src/app/services/alertas/alerta.service';
 
@@ -63,5 +63,26 @@ export class MiscServiceService {
           throw err;
         })
       );
+  }
+
+  getGeneral() {
+    type Response = { msg: string; data: GeneralInfo[] };
+    return this.http.get<Response>(`${WEB_SERVICE}api/misc/general`).pipe(
+      map((res: Response) => {
+        const general = res.data.map(g => {
+          return {
+            ...g,
+            fechaIngreso: new Date(g.fechaIngreso),
+            fechaCita: new Date(g.fechaCita),
+          };
+        });
+        return general;
+      }),
+      catchError(err => {
+        this.alerta.showError('Error al obtener los datos generales');
+        of([]);
+        throw err;
+      })
+    );
   }
 }

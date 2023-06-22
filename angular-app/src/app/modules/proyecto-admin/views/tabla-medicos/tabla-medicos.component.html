@@ -1,0 +1,44 @@
+<main class="main-view">
+  <app-selector-tablas></app-selector-tablas>
+
+  <section class="tabla">
+    <h1>Tabla de Medicos</h1>
+    <p-table [value]="medicos" styleClass="p-datatable-striped">
+      <ng-template pTemplate="caption">
+        <div class="acciones">
+          <button pButton>
+            <i class="fa-solid fa-plus" style="margin-right: 1rem"></i>
+            Agregar Medico
+          </button>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nombre</th>
+          <th>Fecha Nacimiento</th>
+          <th>Eliminar</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-medico>
+        <tr>
+          <td>{{ medico.nombre }}</td>
+          <td>{{ medico.fechaNacimiento | date : 'dd/MM/yyyy' }}</td>
+          <td style="text-align: center">
+            <button
+              pButton
+              icon="pi pi-trash"
+              (click)="eliminarMedico(medico.codDuenio)"
+              class="p-button-rounded p-button-danger"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="7" style="text-align: center">
+            No hay medicos registrados
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </section>
+</main>

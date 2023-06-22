@@ -40,3 +40,13 @@ export interface Medico {
   nombre: string;
   fechaNacimiento: Date;
 }
+
+export interface GeneralInfo {
+  mes: number;
+  fechaIngreso: Date;
+  duenio: string;
+  paciente: string;
+  especie: string;
+  fechaCita: Date;
+  medico: string;
+}

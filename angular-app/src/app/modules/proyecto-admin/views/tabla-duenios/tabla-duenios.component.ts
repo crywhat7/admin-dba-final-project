@@ -10,6 +10,12 @@ import { DueniosService } from '../../services/duenios.service';
 export class TablaDueniosComponent {
   duenios: Duenio[] = [];
   modalCrearDuenio = false;
+  duenio: Duenio = {
+    codDuenio: 0,
+    nombreCompleto: '',
+    direccion: '',
+    identidad: '',
+  };
 
   constructor(private dueniosService: DueniosService) {
     this.getDuenios();
@@ -20,11 +26,20 @@ export class TablaDueniosComponent {
       this.duenios = duenios;
     });
   }
-  showModalCrearDuenio() {}
+  showModalCrearDuenio() {
+    this.modalCrearDuenio = true;
+  }
 
   eliminarDuenio(codDuenio: number) {
     this.dueniosService.eliminarDuenio(codDuenio).subscribe(() => {
       this.getDuenios();
+    });
+  }
+
+  agregarDuenio() {
+    this.dueniosService.crearDuenio(this.duenio).subscribe(() => {
+      this.getDuenios();
+      this.modalCrearDuenio = false;
     });
   }
 }
